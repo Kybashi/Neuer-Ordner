@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request
 from DbContext import create_connection
+from controller import GpxController
 
-database = r"C:\DB\gpx\gpx.db"
+# index.html <- controller.py <- app.py
+#                   V
+#                model.py -> DbContext.py
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    conn = create_connection(database)
-    fahrt = ('testname',1,2)
-
-    return "Hello, Flask!"
+    return GpxController.index
