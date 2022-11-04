@@ -1,7 +1,7 @@
 import DbContext
 
-database = r"C:\DB\gpx\gpx.db"
 
+database = r"C:\DB\gpx\gpx.db"
 class Fahrer(object):
 
     def getFahrer():
