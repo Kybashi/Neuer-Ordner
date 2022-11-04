@@ -18,7 +18,8 @@ def create_connection(db_file):
 
 def select_fahrer(conn):
     try:
-        sql = ''' SELECT name, vorname FROM fahrer '''
+        conn.row_factory = lambda cursor, row:row[0]
+        sql = ''' SELECT name FROM fahrer '''
         cur = conn.cursor()
         cur.execute(sql)
         res = cur.fetchall()
@@ -36,6 +37,7 @@ def select_fahrer(conn):
 
 def select_fahrzeug(conn):
     try:
+        conn.row_factory = lambda cursor, row:row[0]
         sql = ''' SELECT polkz FROM fahrzeug '''
         cur = conn.cursor()
         cur.execute(sql)

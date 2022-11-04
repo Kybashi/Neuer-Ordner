@@ -1,3 +1,4 @@
+from pickle import APPEND
 from flask import request,redirect
 from flask import render_template
 import model
@@ -5,7 +6,13 @@ import model
 class GpxController():
 
     def index():
-        fahrerList = model.Fahrer.getFahrer()
-        fahrzeuge = model.Fahrzeug.getFahrzeug()
+        list = []
+        (fahrerList, status) = model.Fahrer.getFahrer()
+
+        (fahrzeugList, status) = model.Fahrzeug.getFahrzeug()
         
-        return render_template('index.html', fahrerList = fahrerList)
+        return render_template('index.html', fahrerList = fahrerList, fahrzeugList = fahrzeugList)
+
+
+if __name__ == '__main__':
+    GpxController.index()

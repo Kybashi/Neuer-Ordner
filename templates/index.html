@@ -12,43 +12,28 @@
 
     <!-- Example Code -->
     
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Fahrer
-      </button>
-      <SELECT name="fahrer">
-        {% for c in fahrerList %}
-          <OPTION value={{c.name}>{{c.vorname}}</option>
-        {% endfor %}
-      </SELECT>
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Fahrzeug
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Anfang
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Ende
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-      <button class="submit-button" type="submit">
-        Suchen
-      </button>
-
+    <div class="dropdown" method='post'>
+      <form action='' method='post'>
+        Fahrer<select name="fahrer" width="300px">
+          {% for o in fahrerList %}
+          <option value="{{o}}">{{o}}</option>
+          {% endfor %}
+        </select>
+  
+        Fahrzeug<select name="fahrzeug" width="300px">
+          {% for o in fahrzeugList %}
+          <option value="{{o}}">{{o}}</option>
+          {% endfor %}
+        </select> &nbsp;
+  
+        Anfang<input type="date" id="datum_von" name="date" class="form-control" 
+          format="dd/mm/yyyy" placeholder="YYYY-MM-DD" style="width:10%; display:inline;">
+  
+        Ende<input type="date" id="datum_bis" name="date" class="form-control" 
+          format="dd/mm/yyyy" placeholder="YYYY-MM-DD" style="width:10%; display:inline;">
+    
+        <input type='submit' value='Bestätigen' class="button">
+      </form>
     </div>
     
     <!-- End Example Code -->

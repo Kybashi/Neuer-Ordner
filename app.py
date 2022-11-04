@@ -10,4 +10,10 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    t = request.form['fahrer']
+    #the_date = request.form['date_von']
+    print(t)
+    #print(the_date)
+    print(request.method)
     return GpxController.index()
+
