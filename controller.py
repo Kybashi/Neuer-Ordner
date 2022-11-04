@@ -4,8 +4,8 @@ import model
 
 class GpxController():
 
-    def index(self):
+    def index():
         fahrer = model.Fahrer.getFahrer()
         fahrzeuge = model.Fahrzeug.getFahrzeug()
         
-        return render_template('index.html', title='Home', fahrer=fahrer, fahrzeuge=fahrzeuge)
+        return render_template('index.html')
