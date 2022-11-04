@@ -5,7 +5,7 @@ import model
 class GpxController():
 
     def index():
-        fahrer = model.Fahrer.getFahrer()
+        fahrerList = model.Fahrer.getFahrer()
         fahrzeuge = model.Fahrzeug.getFahrzeug()
         
-        return render_template('index.html')
+        return render_template('index.html', fahrerList = fahrerList)

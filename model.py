@@ -1,7 +1,7 @@
 import DbContext
 
 
-database = r"C:\DB\gpx\gpx.db"
+database = r"C:\Users\Emre Kayabasi\Neuer Ordner\gpx.db"
 class Fahrer(object):
 
     def getFahrer():
@@ -23,9 +23,9 @@ class Fahrzeug():
             return list, "true"
 
 def main():
-     database = r"C:\DB\gpx\gpx.db"
      obj = Fahrer
      (list, status) = Fahrzeug.getFahrzeug()
+     (t,g) = Fahrer.getFahrer()
 
 
 

@@ -16,11 +16,11 @@
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Fahrer
       </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+      <SELECT name="fahrer">
+        {% for c in fahrerList %}
+          <OPTION value={{c.name}>{{c.vorname}}</option>
+        {% endfor %}
+      </SELECT>
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Fahrzeug
       </button>
