@@ -18,8 +18,7 @@ def create_connection(db_file):
 
 def select_fahrer(conn):
     try:
-        conn.row_factory = lambda cursor, row:row[0]
-        sql = ''' SELECT * FROM fahrer '''
+        sql = ''' SELECT name, vorname FROM fahrer '''
         cur = conn.cursor()
         cur.execute(sql)
         res = cur.fetchall()
@@ -29,13 +28,29 @@ def select_fahrer(conn):
             return "", False
         else:
             conn.row_factory = None
-            return res[0], True
+            return res, True
 
     except sqlite3.Error as error:
         print("Failed to read data from fahrer table")
         return error
 
+def select_fahrzeug(conn):
+    try:
+        sql = ''' SELECT polkz FROM fahrzeug '''
+        cur = conn.cursor()
+        cur.execute(sql)
+        res = cur.fetchall()
 
+        if len(res) < 1:
+            conn.row_factory = None
+            return "", False
+        else:
+            conn.row_factory = None
+            return res, True
+
+    except sqlite3.Error as error:
+        print("Failed to read data from fahrzeug table")
+        return error
 
 def select_fahrtpunktId(conn, fahrer):
     try:
