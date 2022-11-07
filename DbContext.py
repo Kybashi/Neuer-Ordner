@@ -18,8 +18,8 @@ def create_connection(db_file):
 
 def select_fahrer(conn):
     try:
-        conn.row_factory = lambda cursor, row:row[0]
-        sql = ''' SELECT name FROM fahrer '''
+        #conn.row_factory = lambda cursor, row:row[0]
+        sql = ''' SELECT fid, name FROM fahrer '''
         cur = conn.cursor()
         cur.execute(sql)
         res = cur.fetchall()
@@ -33,14 +33,14 @@ def select_fahrer(conn):
 
     except sqlite3.Error as error:
         print("Failed to read data from fahrer table")
-        return error
+        return "", error
 
-def select_fahrzeug(conn):
+def select_fahrzeugById(conn, fzid):
     try:
-        conn.row_factory = lambda cursor, row:row[0]
-        sql = ''' SELECT polkz FROM fahrzeug '''
+        sql = ''' SELECT fzid, polkz FROM fahrzeug
+                WHERE fzid=? '''
         cur = conn.cursor()
-        cur.execute(sql)
+        cur.execute(sql, (fzid,))
         res = cur.fetchall()
 
         if len(res) < 1:
@@ -52,7 +52,86 @@ def select_fahrzeug(conn):
 
     except sqlite3.Error as error:
         print("Failed to read data from fahrzeug table")
-        return error
+        return "", error
+
+def select_fahrtByFidAndFzid(conn, val):
+    try:
+        #conn.row_factory = lambda cursor, row:row[0]
+        sql = ''' SELECT ftid, dateiname  FROM fahrt
+                WHERE fid=? AND fzid=? '''
+        cur = conn.cursor()
+        cur.execute(sql, val)
+        res = cur.fetchall()
+
+        if len(res) < 1:
+            conn.row_factory = None
+            return "", False
+        else:
+            conn.row_factory = None
+            return res, True
+
+    except sqlite3.Error as error:
+        print("Failed to read data from fahrt table")
+        return "", error
+
+def select_fahrtByDate(conn, val):
+    try:
+        conn.row_factory = lambda cursor, row:row[0]
+        sql = ''' SELECT DISTINCT ftid FROM fahrtpunkt
+                WHERE zeitstempel BETWEEN ? AND ? '''
+        cur = conn.cursor()
+        cur.execute(sql, val)
+        res = cur.fetchall()
+
+        if len(res) < 1:
+            conn.row_factory = None
+            return "", False
+        else:
+            conn.row_factory = None
+            return res, True
+
+    except sqlite3.Error as error:
+        print("Failed to read data from fahrtpunkte table")
+        return "", error
+
+def select_PointsByFahrtId(conn, val):
+    try:
+        sql = ''' SELECT lat, lon FROM fahrtpunkt
+                WHERE ftid=? '''
+        cur = conn.cursor()
+        cur.execute(sql, (val,))
+        res = cur.fetchall()
+
+        if len(res) < 1:
+            conn.row_factory = None
+            return "", False
+        else:
+            conn.row_factory = None
+            return res, True
+
+    except sqlite3.Error as error:
+        print("Failed to read data from fahrtpunkte table")
+        return "", error
+
+def select_fahrzeugIdFromFahrt(conn, fahrer):
+    try:
+        conn.row_factory = lambda cursor, row:row[0]
+        sql = ''' SELECT DISTINCT fzid FROM fahrt 
+               WHERE fid=? '''
+        cur = conn.cursor()
+        cur.execute(sql, fahrer)
+        res = cur.fetchall()
+
+        if len(res) < 1:
+            conn.row_factory = None
+            return "", False
+        else:
+            conn.row_factory = None
+            return res, True
+
+    except sqlite3.Error as error:
+        print("Failed to read data from fahrt table")
+        return "", error
 
 def select_fahrtpunktId(conn, fahrer):
     try:

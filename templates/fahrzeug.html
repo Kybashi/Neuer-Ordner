@@ -12,29 +12,29 @@
 
     <!-- Example Code -->
     
-    <div class="dropdown">
-      <form action='http://127.0.0.1:5000/fahrzeug' method='post'>
+    <div class="dropdown" method='post'>
+      <form action='http://127.0.0.1:5000/fahrt' method='post'>
         Fahrer<select name="fahrer" width="300px">
           {% for o in fahrerList %}
-          <option value="{{o}}">{{o[1]}}</option>
+          <option value="{{o}}">{{o}}</option>
           {% endfor %}
         </select>
-
-        <input type='submit' value='Fahrzeuge anzeigen' class="button">
   
         Fahrzeug<select name="fahrzeug" width="300px">
           {% for o in fahrzeugList %}
-          <option value="{{o}}">{{o}}</option>
+            {% for x in o %}
+            <option value="{{x}}">{{x[1]}}</option>
+            {% endfor %}      
           {% endfor %}
         </select> &nbsp;
   
-        Anfang<input type="date" id="datum_von" name="date" class="form-control" 
+        Anfang<input type="date" id="datum_von" name="datum_von" class="form-control" 
           format="dd/mm/yyyy" placeholder="YYYY-MM-DD" style="width:10%; display:inline;">
   
-        Ende<input type="date" id="datum_bis" name="date" class="form-control" 
+        Ende<input type="date" id="datum_bis" name="datum_bis" class="form-control" 
           format="dd/mm/yyyy" placeholder="YYYY-MM-DD" style="width:10%; display:inline;">
     
-        <!--<input type='submit' value='Bestätigen' class="button"> -->
+        <input type='submit' value='Fahrten anzeigen' class="button">
       </form>
     </div>
     
