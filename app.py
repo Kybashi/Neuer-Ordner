@@ -41,8 +41,6 @@ def fahrt():
     print(fzid)
     fahrtVon = request.form['datum_von']
     fartBis = request.form['datum_bis']
-    print(fahrtVon)
-    print(fartBis)
     fahrer = request.form['fahrer']
     return GpxController.fahrt(str(fid), str(fzid), fahrtVon, fartBis, fahrer, fahrzeugname)
 
@@ -52,6 +50,6 @@ def map():
     print(request.method)
     string = request.form['fahrt']
     id = re.split(",", string)[0]
-    ftid = id.replace('(','')#request.form['fahrt'][1]
+    ftid = id.replace('(','')
     print(ftid)
     return GpxController.map(ftid)

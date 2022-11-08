@@ -12,8 +12,6 @@ class Fahrer(object):
         else:
             return list, "true"
 
-    
-
 class Fahrzeug():
 
     def getFahrzeugIds(fid):
@@ -65,10 +63,10 @@ class Fahrtpunte():
         else:
             return points, "true"
 
-def main():
-     Fahrtpunte.getPoints(2,'2019-01-02','2022-22-19')
+# def main():
+#      Fahrtpunte.getPoints(2,'2019-01-02','2022-22-19')
 
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

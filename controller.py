@@ -48,10 +48,8 @@ class GpxController():
         return folium_map._repr_html_()
 
 
-def main():
-    # GpxController.map('2')
-    #GpxController.fahrt('3','8','1900-01-01', '2022-12-30', 'faffa', 'fafa')
-    GpxController.map('12')
+# def main():
+#     GpxController.map('12')
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
